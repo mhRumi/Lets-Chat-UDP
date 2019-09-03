@@ -44,30 +44,22 @@ public class messageTransmitter extends Thread{
     @Override
     public void run()
     {
-        
-//        try {
-//        Socket s = new Socket(hostname, port);
-//        s.getOutputStream().write(message.getBytes());
-//        s.close();
-//        } catch (IOException ex) {
-//            Logger.getLogger(messageTransmitter.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-      
+       // while(true){
 
         try {
               socket = new DatagramSocket();
               buf = message.getBytes();
-    DatagramPacket packet
+              DatagramPacket packet
             = new DatagramPacket(buf, buf.length, InetAddress.getByName(hostname), this.port);
-    socket.send(packet);
+            socket.send(packet);
+            socket.close();
 
             } catch (IOException ex) {
                 Logger.getLogger(messageTransmitter.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
+           // }
         
-        
+    }
       
     
 }

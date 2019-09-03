@@ -60,25 +60,11 @@ public class MessageListener extends Thread{
     @Override
     public void run()
     {
-//        try {
-//            Socket clientSocket;
-//            
-//            while((clientSocket = server.accept()) != null)
-//            {
-//                InputStream is = clientSocket.getInputStream();
-//                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-//                String line = br.readLine();
-//                if(line != null)
-//                {
-//                    gui.write("Friend: "+line);
-//                }
-//            }
-//        } catch (IOException ex) {
-//            Logger.getLogger(MessageListener.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        while(true){
         
-        DatagramPacket packet = new DatagramPacket(buf,buf.length);
         try {
+            socket = new DatagramSocket(port);
+        DatagramPacket packet = new DatagramPacket(buf,buf.length);
             socket.receive(packet);
             String line = data(buf).toString();
             if(line != null)
@@ -88,8 +74,8 @@ public class MessageListener extends Thread{
         } catch (IOException ex) {
             Logger.getLogger(MessageListener.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+        socket.close();
+        }  
     }
     
     public static StringBuilder data(byte[] a) 
