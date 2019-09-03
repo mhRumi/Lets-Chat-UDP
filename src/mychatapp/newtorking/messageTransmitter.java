@@ -44,7 +44,6 @@ public class messageTransmitter extends Thread{
     @Override
     public void run()
     {
-       // while(true){
 
         try {
               socket = new DatagramSocket();
@@ -57,7 +56,6 @@ public class messageTransmitter extends Thread{
             } catch (IOException ex) {
                 Logger.getLogger(messageTransmitter.class.getName()).log(Level.SEVERE, null, ex);
             }
-           // }
         
     }
       
